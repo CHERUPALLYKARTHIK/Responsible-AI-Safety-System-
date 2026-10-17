@@ -1,100 +1,1445 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Responsible AI & Safety — Final Exam Practice</title>
-  <meta name="description" content="Fresh mixed final-exam simulations for Responsible AI & Safety with weak-area diagnostics." />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+
+  <!-- Website title shown in browser tab / Google / Vercel -->
+  <title>Responsible &amp; Safe AI Systems</title>
+
+  <!-- Website description -->
+  <meta
+    name="description"
+    content="Final exam practice for Responsible & Safe AI Systems with mixed questions, adaptive weak-area practice, assignment questions, multiple-choice questions, and numerical questions."
+  />
+
+  <!-- Browser tab logo / favicon -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/course-logo.png"
+  />
+
+  <!-- Apple/iPhone home-screen icon -->
+  <link
+    rel="apple-touch-icon"
+    href="assets/course-logo.png"
+  />
+
+  <!-- Browser theme -->
+  <meta name="theme-color" content="#0f172a" />
+
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--navy:#0f172a;--slate:#475569;--muted:#64748b;--line:#e2e8f0;--blue:#0284c7;--bluebg:#f0f9ff;--green:#15803d;--greenbg:#f0fdf4;--amber:#b45309;--amberbg:#fffbeb;--red:#b91c1c;--redbg:#fef2f2;--shadow:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04)}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.hidden{display:none!important}
-    button{font:inherit}.shell{min-height:100vh}.topbar{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em}
-    .page{max-width:1180px;margin:0 auto;padding:38px 24px 70px}.home{max-width:1180px;margin:0 auto}.course-branding{display:flex;flex-direction:column;align-items:center;margin:2px auto 26px}.course-branding-card{width:100%;min-height:156px;background:#fff;border:1px solid #dbe1e8;border-radius:22px;box-shadow:0 5px 12px rgba(15,23,42,.14);display:flex;align-items:center;justify-content:center;padding:24px 42px}.course-branding-top{display:flex;align-items:center;justify-content:center;gap:58px;flex-wrap:wrap}.swayam-logo{width:190px;height:auto;object-fit:contain}.course-logo{width:104px;height:104px;object-fit:contain}.course-title-text{font-size:44px;line-height:1.12;letter-spacing:-.035em;font-weight:800;text-align:center;margin:42px 0 0;color:#1f2937}.launch{max-width:760px;margin-left:auto;margin-right:auto}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.launch{padding:24px}.section-label{text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:10px}.lengths{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#f1f5f9;padding:5px;border-radius:12px}.length-btn{border:0;background:transparent;border-radius:9px;padding:12px 8px;color:var(--muted);cursor:pointer}.length-btn strong{display:block;font-size:16px;color:inherit}.length-btn span{font-size:11px}.length-btn.active{background:white;color:var(--navy);box-shadow:var(--shadow)}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0}.metric{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center}.metric small{display:block;color:var(--muted);font-size:11px}.metric strong{font-size:13px}.primary{width:100%;border:0;border-radius:11px;background:var(--navy);color:#fff;padding:16px 20px;font-weight:800;cursor:pointer;transition:.15s}.primary:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.12)}.secondary{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:11px 14px;font-weight:750;cursor:pointer}.danger{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer}
-    .numeric-wrap{padding:4px 0}.numeric-input{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 18px;font:inherit;font-size:18px;color:var(--navy);outline:none}.numeric-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(2,132,199,.10)}
-    .exam-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}.exam-main{min-width:0}.exam-status{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.progress-text{font-size:13px;color:var(--muted);font-weight:700}.timer{font-variant-numeric:tabular-nums;font-size:14px;font-weight:850;padding:8px 11px;border-radius:9px;background:#fff;border:1px solid var(--line)}.progressbar{height:7px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:18px}.progressfill{height:100%;background:var(--blue);transition:width .2s}.question-card{padding:28px}.qtype{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.qtext{font-size:20px;line-height:1.55;font-weight:760;letter-spacing:-.012em;margin:10px 0 22px}.options{display:grid;gap:11px}.option{width:100%;min-height:64px;border:1px solid var(--line);background:white;border-radius:12px;padding:13px 14px;display:grid;grid-template-columns:36px 1fr;align-items:center;gap:12px;text-align:left;cursor:pointer;color:#1e293b;transition:.12s}.option:hover{border-color:#94a3b8;background:#f8fafc}.option.selected{border:1.5px solid var(--blue);background:var(--bluebg)}.letter{width:32px;height:32px;border-radius:8px;background:#f1f5f9;display:grid;place-items:center;font-size:12px;font-weight:850}.option.selected .letter{background:var(--navy);color:white}.option-text{font-size:14px;line-height:1.45;font-weight:560}.exam-actions{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:12px}.action-left,.action-right{display:flex;gap:10px}.flag.active{border-color:#f59e0b;background:var(--amberbg);color:var(--amber)}
-    .side{position:sticky;top:88px}.sidecard{padding:18px}.side-title{font-size:13px;font-weight:850;margin-bottom:12px}.navgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.navq{aspect-ratio:1;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--slate);font-size:11px;font-weight:800;cursor:pointer;position:relative}.navq.answered{background:#e0f2fe;border-color:#7dd3fc;color:#075985}.navq.current{outline:2px solid var(--navy);outline-offset:1px}.navq.flagged::after{content:"";width:6px;height:6px;border-radius:50%;background:#f59e0b;position:absolute;top:4px;right:4px}.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:10px;color:var(--muted)}.dot{display:inline-block;width:8px;height:8px;border-radius:2px;border:1px solid var(--line);margin-right:4px;vertical-align:-1px}.dot.ans{background:#e0f2fe;border-color:#7dd3fc}.dot.flagd{background:#f59e0b;border-color:#f59e0b}.submit-wrap{margin-top:16px}.submit-wrap button{width:100%}
-    .results-head{display:grid;grid-template-columns:220px 1fr;gap:22px;margin-bottom:22px}.score-card{padding:22px;text-align:center}.score{font-size:46px;font-weight:900;letter-spacing:-.05em}.score-label{color:var(--muted);font-size:12px}.score-status{margin-top:10px;display:inline-block;border-radius:999px;padding:6px 10px;font-weight:800;font-size:11px}.status-strong{background:#dcfce7;color:#166534}.status-good{background:#e0f2fe;color:#075985}.status-review{background:#fef3c7;color:#92400e}.status-weak{background:#ffedd5;color:#9a3412}.status-high{background:#fee2e2;color:#991b1b}.result-summary{padding:22px}.result-summary h2{margin:0 0 8px;font-size:24px}.result-summary p{color:var(--muted);margin:0;line-height:1.6}.mini-stats{display:flex;gap:16px;margin-top:17px;flex-wrap:wrap}.mini-stat{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 13px}.mini-stat b{display:block;font-size:18px}.mini-stat span{font-size:11px;color:var(--muted)}
-    .result-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}.panel{padding:22px}.panel h3{margin:0 0 16px;font-size:16px}.weekrow{display:grid;grid-template-columns:58px 1fr 54px 84px;gap:10px;align-items:center;margin:11px 0}.weekname{font-size:12px;font-weight:800}.bar{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}.bar>span{display:block;height:100%;background:#0ea5e9}.pct{font-size:12px;font-weight:800;text-align:right}.badge{font-size:10px;font-weight:850;border-radius:999px;padding:5px 8px;text-align:center}.weak-item{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}.weak-item h4{margin:0 0 5px;font-size:14px}.weak-item p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.chip{font-size:10px;background:#f1f5f9;color:#334155;border-radius:999px;padding:5px 8px}.recommend{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:14px;color:#7c2d12;font-size:12px;line-height:1.55;margin-top:12px}.result-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}.result-actions .primary{width:auto;padding:13px 18px}
-    .review-card{padding:24px;margin-bottom:16px}.review-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}.review-q{font-size:17px;line-height:1.55;font-weight:750}.answerbox{border-radius:10px;padding:12px;margin-top:10px;font-size:13px;line-height:1.5}.answerbox.wrong{background:var(--redbg);border:1px solid #fecaca;color:#7f1d1d}.answerbox.correct{background:var(--greenbg);border:1px solid #bbf7d0;color:#14532d}.explain{margin-top:12px;color:#475569;font-size:13px;line-height:1.6}.memory{margin-top:10px;background:#f8fafc;border-left:3px solid var(--blue);padding:10px 12px;border-radius:0 8px 8px 0;font-size:12px}.tagrow{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.tag{font-size:10px;font-weight:800;color:#475569;background:#f1f5f9;border-radius:999px;padding:5px 8px}
-    .modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:grid;place-items:center;padding:20px;z-index:50}.modal-card{background:#fff;border-radius:18px;max-width:460px;width:100%;padding:24px;box-shadow:0 20px 40px rgba(15,23,42,.18)}.modal-card h3{margin:0 0 8px}.modal-card p{color:var(--muted);font-size:13px;line-height:1.55}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
-        @media(max-width:900px){.exam-grid,.result-grid,.results-head{grid-template-columns:1fr}.side{position:static}.navgrid{grid-template-columns:repeat(10,1fr)}}
-    @media(max-width:620px){.topbar{padding:0 15px}.course-branding-card{min-height:132px;padding:20px 16px;border-radius:16px}.course-branding-top{gap:22px}.swayam-logo{width:min(180px,52vw)}.course-logo{width:78px;height:78px}.course-title-text{font-size:30px;margin-top:28px}.page{padding:24px 14px 60px}.launch,.question-card,.panel,.result-summary,.score-card{padding:18px}.metrics{grid-template-columns:1fr}.navgrid{grid-template-columns:repeat(7,1fr)}.qtext{font-size:18px}.exam-actions{align-items:stretch;flex-direction:column}.action-left,.action-right{display:grid;grid-template-columns:1fr 1fr}.weekrow{grid-template-columns:52px 1fr 44px}.weekrow .badge{display:none}.results-head{gap:12px}}
+    :root {
+      --bg: #f8fafc;
+      --card: #fff;
+      --navy: #0f172a;
+      --slate: #475569;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --blue: #0284c7;
+      --bluebg: #f0f9ff;
+      --green: #15803d;
+      --greenbg: #f0fdf4;
+      --amber: #b45309;
+      --amberbg: #fffbeb;
+      --red: #b91c1c;
+      --redbg: #fef2f2;
+      --shadow:
+        0 1px 3px rgba(15, 23, 42, .06),
+        0 1px 2px rgba(15, 23, 42, .04);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--navy);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .shell {
+      min-height: 100vh;
+    }
+
+    /* ---------------- TOP BAR ---------------- */
+
+    .topbar {
+      height: 64px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    /* ---------------- PAGE ---------------- */
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 38px 24px 70px;
+    }
+
+    .home {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* ---------------- COURSE BRANDING ---------------- */
+
+    .course-branding {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2px auto 26px;
+    }
+
+    .course-branding-card {
+      width: 100%;
+      min-height: 156px;
+      background: #fff;
+      border: 1px solid #dbe1e8;
+      border-radius: 22px;
+      box-shadow: 0 5px 12px rgba(15, 23, 42, .14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 42px;
+    }
+
+    .course-branding-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 58px;
+      flex-wrap: wrap;
+    }
+
+    .swayam-logo {
+      width: 190px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .course-logo {
+      width: 104px;
+      height: 104px;
+      object-fit: contain;
+    }
+
+    .course-title-text {
+      font-size: 44px;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+      font-weight: 800;
+      text-align: center;
+      margin: 42px 0 0;
+      color: #1f2937;
+    }
+
+    /* ---------------- HOME EXAM CARD ---------------- */
+
+    .launch {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .lengths {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 5px;
+      border-radius: 12px;
+    }
+
+    .length-btn {
+      border: 0;
+      background: transparent;
+      border-radius: 9px;
+      padding: 12px 8px;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .length-btn strong {
+      display: block;
+      font-size: 16px;
+      color: inherit;
+    }
+
+    .length-btn span {
+      font-size: 11px;
+    }
+
+    .length-btn.active {
+      background: white;
+      color: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .metric {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px;
+      text-align: center;
+    }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .metric strong {
+      font-size: 13px;
+    }
+
+    /* ---------------- BUTTONS ---------------- */
+
+    .primary {
+      width: 100%;
+      border: 0;
+      border-radius: 11px;
+      background: var(--navy);
+      color: #fff;
+      padding: 16px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, .12);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--navy);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .danger {
+      background: var(--blue);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* ---------------- NUMERICAL QUESTIONS ---------------- */
+
+    .numeric-wrap {
+      padding: 4px 0;
+    }
+
+    .numeric-input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 16px 18px;
+      font: inherit;
+      font-size: 18px;
+      color: var(--navy);
+      outline: none;
+    }
+
+    .numeric-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, .10);
+    }
+
+    /* ---------------- EXAM ---------------- */
+
+    .exam-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .exam-main {
+      min-width: 0;
+    }
+
+    .exam-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .progress-text {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .timer {
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 850;
+      padding: 8px 11px;
+      border-radius: 9px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .progressbar {
+      height: 7px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progressfill {
+      height: 100%;
+      background: var(--blue);
+      transition: width .2s;
+    }
+
+    .question-card {
+      padding: 28px;
+    }
+
+    .qtype {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .qtext {
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 760;
+      letter-spacing: -.012em;
+      margin: 10px 0 22px;
+    }
+
+    .options {
+      display: grid;
+      gap: 11px;
+    }
+
+    .option {
+      width: 100%;
+      min-height: 64px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 12px;
+      padding: 13px 14px;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+      color: #1e293b;
+      transition: .12s;
+    }
+
+    .option:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .option.selected {
+      border: 1.5px solid var(--blue);
+      background: var(--bluebg);
+    }
+
+    .letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .option.selected .letter {
+      background: var(--navy);
+      color: white;
+    }
+
+    .option-text {
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 560;
+    }
+
+    .exam-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      gap: 12px;
+    }
+
+    .action-left,
+    .action-right {
+      display: flex;
+      gap: 10px;
+    }
+
+    .flag.active {
+      border-color: #f59e0b;
+      background: var(--amberbg);
+      color: var(--amber);
+    }
+
+    /* ---------------- QUESTION NAVIGATOR ---------------- */
+
+    .side {
+      position: sticky;
+      top: 88px;
+    }
+
+    .sidecard {
+      padding: 18px;
+    }
+
+    .side-title {
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+
+    .navgrid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+    }
+
+    .navq {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--slate);
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .navq.answered {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+      color: #075985;
+    }
+
+    .navq.current {
+      outline: 2px solid var(--navy);
+      outline-offset: 1px;
+    }
+
+    .navq.flagged::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f59e0b;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      border: 1px solid var(--line);
+      margin-right: 4px;
+      vertical-align: -1px;
+    }
+
+    .dot.ans {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+    }
+
+    .dot.flagd {
+      background: #f59e0b;
+      border-color: #f59e0b;
+    }
+
+    .submit-wrap {
+      margin-top: 16px;
+    }
+
+    .submit-wrap button {
+      width: 100%;
+    }
+
+    /* ---------------- RESULTS ---------------- */
+
+    .results-head {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .score-card {
+      padding: 22px;
+      text-align: center;
+    }
+
+    .score {
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: -.05em;
+    }
+
+    .score-label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .score-status {
+      margin-top: 10px;
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 800;
+      font-size: 11px;
+    }
+
+    .status-strong {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-good {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .status-review {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-weak {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .status-high {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .result-summary {
+      padding: 22px;
+    }
+
+    .result-summary h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .result-summary p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .mini-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 17px;
+      flex-wrap: wrap;
+    }
+
+    .mini-stat {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 13px;
+    }
+
+    .mini-stat b {
+      display: block;
+      font-size: 18px;
+    }
+
+    .mini-stat span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel h3 {
+      margin: 0 0 16px;
+      font-size: 16px;
+    }
+
+    .weekrow {
+      display: grid;
+      grid-template-columns: 58px 1fr 54px 84px;
+      gap: 10px;
+      align-items: center;
+      margin: 11px 0;
+    }
+
+    .weekname {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      background: #0ea5e9;
+    }
+
+    .pct {
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 850;
+      border-radius: 999px;
+      padding: 5px 8px;
+      text-align: center;
+    }
+
+    .weak-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .weak-item h4 {
+      margin: 0 0 5px;
+      font-size: 14px;
+    }
+
+    .weak-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+    }
+
+    .chip {
+      font-size: 10px;
+      background: #f1f5f9;
+      color: #334155;
+      border-radius: 999px;
+      padding: 5px 8px;
+    }
+
+    .recommend {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 14px;
+      color: #7c2d12;
+      font-size: 12px;
+      line-height: 1.55;
+      margin-top: 12px;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .result-actions .primary {
+      width: auto;
+      padding: 13px 18px;
+    }
+
+    /* ---------------- REVIEW ---------------- */
+
+    .review-card {
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .review-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .review-q {
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .answerbox {
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .answerbox.wrong {
+      background: var(--redbg);
+      border: 1px solid #fecaca;
+      color: #7f1d1d;
+    }
+
+    .answerbox.correct {
+      background: var(--greenbg);
+      border: 1px solid #bbf7d0;
+      color: #14532d;
+    }
+
+    .explain {
+      margin-top: 12px;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .memory {
+      margin-top: 10px;
+      background: #f8fafc;
+      border-left: 3px solid var(--blue);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+    }
+
+    .tagrow {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 10px;
+      font-weight: 800;
+      color: #475569;
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 5px 8px;
+    }
+
+    /* ---------------- SUBMIT MODAL ---------------- */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, .45);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      z-index: 50;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: 18px;
+      max-width: 460px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, .18);
+    }
+
+    .modal-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .modal-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 900px) {
+
+      .exam-grid,
+      .result-grid,
+      .results-head {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+      }
+
+      .navgrid {
+        grid-template-columns: repeat(10, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .brand {
+        font-size: 14px;
+      }
+
+      .course-branding-card {
+        min-height: 132px;
+        padding: 20px 16px;
+        border-radius: 16px;
+      }
+
+      .course-branding-top {
+        gap: 22px;
+      }
+
+      .swayam-logo {
+        width: min(180px, 52vw);
+      }
+
+      .course-logo {
+        width: 78px;
+        height: 78px;
+      }
+
+      .course-title-text {
+        font-size: 30px;
+        margin-top: 28px;
+      }
+
+      .page {
+        padding: 24px 14px 60px;
+      }
+
+      .launch,
+      .question-card,
+      .panel,
+      .result-summary,
+      .score-card {
+        padding: 18px;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .navgrid {
+        grid-template-columns: repeat(7, 1fr);
+      }
+
+      .qtext {
+        font-size: 18px;
+      }
+
+      .exam-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .action-left,
+      .action-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .weekrow {
+        grid-template-columns: 52px 1fr 44px;
+      }
+
+      .weekrow .badge {
+        display: none;
+      }
+
+      .results-head {
+        gap: 12px;
+      }
+    }
   </style>
 </head>
+
 <body>
-<div class="shell">
-  <header class="topbar">
-    <div class="brand"><span>Responsible &amp; Safe AI Systems</span></div>
-  </header>
 
-  <main id="homeView" class="page home">
-    <section class="course-branding" aria-label="Course branding">
-      <div class="course-branding-card">
-        <div class="course-branding-top">
-          <img class="swayam-logo" src="assets/swayam-logo.png" alt="SWAYAM Free Online Education" />
-          <img class="course-logo" src="assets/course-logo.png" alt="Responsible and Safe AI Systems course logo" />
-        </div>
-      </div>
-      <h1 class="course-title-text">Responsible &amp; Safe AI Systems</h1>
-    </section>
-    <section class="card launch">
-      <div class="section-label">Exam length</div>
-      <div class="lengths" id="lengthSelector">
-        <button class="length-btn" data-count="30" data-minutes="55"><strong>30 Q</strong><span>Short</span></button>
-        <button class="length-btn active" data-count="50" data-minutes="90"><strong>50 Q</strong><span>Standard</span></button>
-        <button class="length-btn" data-count="75" data-minutes="135"><strong>75 Q</strong><span>Deep Run</span></button>
-      </div>
-      <div class="metrics"><div class="metric"><small>Time limit</small><strong id="timeLabel">90 mins</strong></div><div class="metric"><small>Negative marking</small><strong>None</strong></div></div>
-      
-      <button id="startBtn" class="primary">Start New Final Exam →</button>
-    </section>
-    
-  </main>
+  <div class="shell">
 
-  <main id="examView" class="page hidden">
-    <div class="exam-grid">
-      <section class="exam-main">
-        <div class="exam-status"><div class="progress-text" id="progressText">Question 1 of 50</div><div class="timer" id="timer">90:00</div></div>
-        <div class="progressbar"><div class="progressfill" id="progressFill"></div></div>
-        <article class="card question-card">
-          <div class="qtype" id="questionType">Single answer</div>
-          <div class="qtext" id="questionText"></div>
-          <div class="options" id="options"></div>
-          <div class="exam-actions">
-            <div class="action-left"><button class="secondary" id="prevBtn">← Previous</button><button class="secondary flag" id="flagBtn">⚑ Flag for Review</button></div>
-            <div class="action-right"><button class="secondary" id="nextBtn">Next →</button></div>
+    <!-- ==================== HEADER ==================== -->
+
+    <header class="topbar">
+      <div class="brand">
+        <span>Responsible &amp; Safe AI Systems</span>
+      </div>
+    </header>
+
+    <!-- ==================== HOME ==================== -->
+
+    <main
+      id="homeView"
+      class="page home"
+    >
+
+      <section
+        class="course-branding"
+        aria-label="Course branding"
+      >
+
+        <div class="course-branding-card">
+
+          <div class="course-branding-top">
+
+            <img
+              class="swayam-logo"
+              src="assets/swayam-logo.png"
+              alt="SWAYAM Free Online Education"
+            />
+
+            <img
+              class="course-logo"
+              src="assets/course-logo.png"
+              alt="Responsible and Safe AI Systems course logo"
+            />
+
           </div>
-        </article>
+
+        </div>
+
+        <h1 class="course-title-text">
+          Responsible &amp; Safe AI Systems
+        </h1>
+
       </section>
-      <aside class="side">
-        <div class="card sidecard"><div class="side-title">Question Navigator</div><div class="navgrid" id="navGrid"></div><div class="legend"><span><i class="dot ans"></i>Answered</span><span><i class="dot flagd"></i>Flagged</span><span><i class="dot"></i>Unanswered</span></div><div class="submit-wrap"><button class="danger" id="submitBtn">Submit Exam</button></div></div>
-      </aside>
+
+      <section class="card launch">
+
+        <div class="section-label">
+          Exam length
+        </div>
+
+        <div
+          class="lengths"
+          id="lengthSelector"
+        >
+
+          <button
+            class="length-btn"
+            data-count="30"
+            data-minutes="55"
+          >
+            <strong>30 Q</strong>
+            <span>Short</span>
+          </button>
+
+          <button
+            class="length-btn active"
+            data-count="50"
+            data-minutes="90"
+          >
+            <strong>50 Q</strong>
+            <span>Standard</span>
+          </button>
+
+          <button
+            class="length-btn"
+            data-count="75"
+            data-minutes="135"
+          >
+            <strong>75 Q</strong>
+            <span>Deep Run</span>
+          </button>
+
+        </div>
+
+        <div class="metrics">
+
+          <div class="metric">
+            <small>Time limit</small>
+            <strong id="timeLabel">90 mins</strong>
+          </div>
+
+          <div class="metric">
+            <small>Negative marking</small>
+            <strong>None</strong>
+          </div>
+
+        </div>
+
+        <button
+          id="startBtn"
+          class="primary"
+        >
+          Start New Final Exam →
+        </button>
+
+      </section>
+
+    </main>
+
+    <!-- ==================== EXAM ==================== -->
+
+    <main
+      id="examView"
+      class="page hidden"
+    >
+
+      <div class="exam-grid">
+
+        <section class="exam-main">
+
+          <div class="exam-status">
+
+            <div
+              class="progress-text"
+              id="progressText"
+            >
+              Question 1 of 50
+            </div>
+
+            <div
+              class="timer"
+              id="timer"
+            >
+              90:00
+            </div>
+
+          </div>
+
+          <div class="progressbar">
+            <div
+              class="progressfill"
+              id="progressFill"
+            ></div>
+          </div>
+
+          <article class="card question-card">
+
+            <div
+              class="qtype"
+              id="questionType"
+            >
+              Single answer
+            </div>
+
+            <div
+              class="qtext"
+              id="questionText"
+            ></div>
+
+            <div
+              class="options"
+              id="options"
+            ></div>
+
+            <div class="exam-actions">
+
+              <div class="action-left">
+
+                <button
+                  class="secondary"
+                  id="prevBtn"
+                >
+                  ← Previous
+                </button>
+
+                <button
+                  class="secondary flag"
+                  id="flagBtn"
+                >
+                  ⚑ Flag for Review
+                </button>
+
+              </div>
+
+              <div class="action-right">
+
+                <button
+                  class="secondary"
+                  id="nextBtn"
+                >
+                  Next →
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </section>
+
+        <!-- Question navigator -->
+
+        <aside class="side">
+
+          <div class="card sidecard">
+
+            <div class="side-title">
+              Question Navigator
+            </div>
+
+            <div
+              class="navgrid"
+              id="navGrid"
+            ></div>
+
+            <div class="legend">
+
+              <span>
+                <i class="dot ans"></i>
+                Answered
+              </span>
+
+              <span>
+                <i class="dot flagd"></i>
+                Flagged
+              </span>
+
+              <span>
+                <i class="dot"></i>
+                Unanswered
+              </span>
+
+            </div>
+
+            <div class="submit-wrap">
+
+              <button
+                class="danger"
+                id="submitBtn"
+              >
+                Submit Exam
+              </button>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </main>
+
+    <!-- ==================== RESULTS ==================== -->
+
+    <main
+      id="resultsView"
+      class="page hidden"
+    >
+
+      <section class="results-head">
+
+        <div class="card score-card">
+
+          <div
+            class="score"
+            id="scoreValue"
+          >
+            0%
+          </div>
+
+          <div
+            class="score-label"
+            id="scoreFraction"
+          >
+            0 / 50
+          </div>
+
+          <div
+            id="overallStatus"
+            class="score-status"
+          ></div>
+
+        </div>
+
+        <div class="card result-summary">
+
+          <h2>
+            Your final-exam diagnostic
+          </h2>
+
+          <p id="diagnosticIntro"></p>
+
+          <div class="mini-stats">
+
+            <div class="mini-stat">
+              <b id="correctCount">0</b>
+              <span>Correct</span>
+            </div>
+
+            <div class="mini-stat">
+              <b id="wrongCount">0</b>
+              <span>Wrong / partial</span>
+            </div>
+
+            <div class="mini-stat">
+              <b id="unansweredCount">0</b>
+              <span>Unanswered</span>
+            </div>
+
+            <div class="mini-stat">
+              <b id="assignmentScore">0%</b>
+              <span>Assignment-derived</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="result-grid">
+
+        <div class="card panel">
+
+          <h3>
+            Performance by Week
+          </h3>
+
+          <div id="weekPerformance"></div>
+
+        </div>
+
+        <div class="card panel">
+
+          <h3>
+            Your Weak Areas
+          </h3>
+
+          <div id="weakAreas"></div>
+
+          <div id="repeatWarning"></div>
+
+        </div>
+
+      </section>
+
+      <div class="result-actions">
+
+        <button
+          class="primary"
+          id="newExamBtn"
+        >
+          Generate New Final Exam
+        </button>
+
+        <button
+          class="secondary"
+          id="reviewBtn"
+        >
+          Review Wrong Answers
+        </button>
+
+      </div>
+
+    </main>
+
+    <!-- ==================== REVIEW ==================== -->
+
+    <main
+      id="reviewView"
+      class="page hidden"
+    >
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          align-items:end;
+          gap:16px;
+          margin-bottom:18px;
+        "
+      >
+
+        <div>
+
+          <div class="section-label">
+            Post-exam review
+          </div>
+
+          <h2 style="margin:0">
+            Wrong answers and memory tips
+          </h2>
+
+        </div>
+
+        <button
+          class="secondary"
+          id="backResultsBtn"
+        >
+          ← Back to Results
+        </button>
+
+      </div>
+
+      <div id="reviewList"></div>
+
+    </main>
+
+  </div>
+
+  <!-- ==================== SUBMIT MODAL ==================== -->
+
+  <div
+    id="submitModal"
+    class="modal hidden"
+  >
+
+    <div class="modal-card">
+
+      <h3>
+        Submit final exam?
+      </h3>
+
+      <p id="submitMessage"></p>
+
+      <div class="modal-actions">
+
+        <button
+          class="secondary"
+          id="cancelSubmit"
+        >
+          Go Back
+        </button>
+
+        <button
+          class="danger"
+          id="confirmSubmit"
+        >
+          Submit Exam
+        </button>
+
+      </div>
+
     </div>
-  </main>
 
-  <main id="resultsView" class="page hidden">
-    <section class="results-head">
-      <div class="card score-card"><div class="score" id="scoreValue">0%</div><div class="score-label" id="scoreFraction">0 / 50</div><div id="overallStatus" class="score-status"></div></div>
-      <div class="card result-summary"><h2>Your final-exam diagnostic</h2><p id="diagnosticIntro"></p><div class="mini-stats"><div class="mini-stat"><b id="correctCount">0</b><span>Correct</span></div><div class="mini-stat"><b id="wrongCount">0</b><span>Wrong / partial</span></div><div class="mini-stat"><b id="unansweredCount">0</b><span>Unanswered</span></div><div class="mini-stat"><b id="assignmentScore">0%</b><span>Assignment-derived</span></div></div></div>
-    </section>
-    <section class="result-grid">
-      <div class="card panel"><h3>Performance by Week</h3><div id="weekPerformance"></div></div>
-      <div class="card panel"><h3>Your Weak Areas</h3><div id="weakAreas"></div><div id="repeatWarning"></div></div>
-    </section>
-    <div class="result-actions"><button class="primary" id="newExamBtn">Generate New Final Exam</button><button class="secondary" id="reviewBtn">Review Wrong Answers</button></div>
-  </main>
+  </div>
 
-  <main id="reviewView" class="page hidden">
-    <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px"><div><div class="section-label">Post-exam review</div><h2 style="margin:0">Wrong answers and memory tips</h2></div><button class="secondary" id="backResultsBtn">← Back to Results</button></div>
-    <div id="reviewList"></div>
-  </main>
-</div>
+  <!-- ==================== JAVASCRIPT ==================== -->
 
-<div id="submitModal" class="modal hidden"><div class="modal-card"><h3>Submit final exam?</h3><p id="submitMessage"></p><div class="modal-actions"><button class="secondary" id="cancelSubmit">Go Back</button><button class="danger" id="confirmSubmit">Submit Exam</button></div></div></div>
+  <script src="config.js"></script>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
 
-<script src="config.js"></script>
-<script src="questions.js"></script>
-<script src="app.js"></script>
 </body>
+
 </html>
